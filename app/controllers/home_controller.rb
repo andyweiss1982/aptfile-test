@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  require 'zbar'
+
   def index
     path = "#{Rails.public_path}/barcode.jpg"
     jpeg = File.binread(path)
