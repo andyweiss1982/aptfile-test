@@ -8,13 +8,13 @@ Important config:
 
 Aptfile at root with libzbar-dev.
 
-```
+
   gem 'zbar', :require => false
-```
+
 
 Home Controller:
 
-```
+
   require 'zbar'
 
   def index
@@ -24,4 +24,3 @@ Home Controller:
     r = z.process
     @barcode = r.first.data
   end
-```
