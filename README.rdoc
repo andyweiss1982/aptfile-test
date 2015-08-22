@@ -8,18 +8,20 @@ Important config:
 
 Aptfile at root with libzbar-dev.
 
-`gem 'zbar', :require => false`
+```
+  gem 'zbar', :require => false
+```
 
 Home Controller:
 
 ```
-require 'zbar'
+  require 'zbar'
 
-def index
-  path = "#{Rails.public_path}/barcode.jpg"
-  jpeg = File.binread(path)
-  z = ZBar::Image.from_jpeg(jpeg)
-  r = z.process
-  @barcode = r.first.data
-end
+  def index
+    path = "#{Rails.public_path}/barcode.jpg"
+    jpeg = File.binread(path)
+    z = ZBar::Image.from_jpeg(jpeg)
+    r = z.process
+    @barcode = r.first.data
+  end
 ```
