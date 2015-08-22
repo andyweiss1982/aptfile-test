@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple test of heroku apt buildfile with libzbar-dev.
 
-Things you may want to cover:
+Reads the barcode.jpg in public folder.
 
-* Ruby version
+Important config:
 
-* System dependencies
+Aptfile at root with libzbar-dev.
 
-* Configuration
+```gem 'zbar', :require => false```
 
-* Database creation
+Home Controller:
 
-* Database initialization
+```
+  require 'zbar'
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  def index
+    path = "#{Rails.public_path}/barcode.jpg"
+    jpeg = File.binread(path)
+    z = ZBar::Image.from_jpeg(jpeg)
+    r = z.process
+    @barcode = r.first.data
+  end
+  ```
